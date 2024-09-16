@@ -1,0 +1,483 @@
+
+R version 4.4.1 (2024-06-14) -- "Race for Your Life"
+Copyright (C) 2024 The R Foundation for Statistical Computing
+Platform: aarch64-apple-darwin20
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[R.app GUI 1.80 (8416) aarch64-apple-darwin20]
+
+[History restored from /Users/lavone/.Rapp.history]
+
+> library(affy)
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    anyDuplicated, aperm, append, as.data.frame, basename, cbind, colnames, dirname,
+    do.call, duplicated, eval, evalq, Filter, Find, get, grep, grepl, intersect,
+    is.unsorted, lapply, Map, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, Position, rank, rbind, Reduce, rownames, sapply, setdiff, table, tapply,
+    union, unique, unsplit, which.max, which.min
+
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with 'browseVignettes()'. To cite
+    Bioconductor, see 'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+> 
+> setwd("/Users/lavone/desktop/GSE344_RAW")
+> data <- ReadAffy()
+> 
+> boxplot(data)
+
+Warning messages:
+1: replacing previous import ‘AnnotationDbi::tail’ by ‘utils::tail’ when loading ‘hgu95av2cdf’ 
+2: replacing previous import ‘AnnotationDbi::head’ by ‘utils::head’ when loading ‘hgu95av2cdf’ 
+> boxplot(data, xlab="Samples", ylab="Genes", main="RAW Microarray Plot", col="pink")
+> data_norm <- rma(data)
+Background correcting
+Normalizing
+Calculating Expression
+> data_norm <- exprs(data_norm)
+> boxplot(data_norm, xlab="Samples", ylab="Genes", main="Normalized Microarray Plot", col="baby blue")
+Error in xypolygon(xx, yy, lty = "blank", col = boxfill[i]) : 
+  invalid color name 'baby blue'
+> boxplot(data_norm, xlab="Samples", ylab="Genes", main="Normalized Microarray Plot", col="light blue")
+> 
+> if(!require(devtools)) install.packages("devtools")
+Loading required package: devtools
+--- Please select a CRAN mirror for use in this session ---
+Warning: unable to access index for repository https://cran.wustl.edu/src/contrib:
+  cannot open URL 'https://cran.wustl.edu/src/contrib/PACKAGES'
+Warning messages:
+1: In library(package, lib.loc = lib.loc, character.only = TRUE, logical.return = TRUE,  :
+  there is no package called ‘devtools’
+2: package ‘devtools’ is not available for this version of R
+
+A version of this package for your version of R might be available elsewhere,
+see the ideas at
+https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages 
+> devtools::install_github("kassambara/ggpubr")
+Error in loadNamespace(x) : there is no package called ‘devtools’
+also installing the dependencies ‘Deriv’, ‘modelr’, ‘microbenchmark’, ‘numDeriv’, ‘doBy’, ‘SparseM’, ‘MatrixModels’, ‘minqa’, ‘nloptr’, ‘stringi’, ‘utf8’, ‘colorspace’, ‘backports’, ‘carData’, ‘abind’, ‘pbkrtest’, ‘quantreg’, ‘lme4’, ‘fs’, ‘pkgbuild’, ‘rprojroot’, ‘diffobj’, ‘rematch2’, ‘isoband’, ‘withr’, ‘Rcpp’, ‘stringr’, ‘tidyselect’, ‘generics’, ‘pillar’, ‘farver’, ‘labeling’, ‘munsell’, ‘viridisLite’, ‘broom’, ‘corrplot’, ‘car’, ‘fansi’, ‘evaluate’, ‘highr’, ‘xfun’, ‘yaml’, ‘brio’, ‘callr’, ‘desc’, ‘digest’, ‘pkgload’, ‘praise’, ‘processx’, ‘ps’, ‘waldo’, ‘ggplot2’, ‘ggrepel’, ‘ggsci’, ‘tidyr’, ‘purrr’, ‘dplyr’, ‘cowplot’, ‘ggsignif’, ‘scales’, ‘gridExtra’, ‘polynom’, ‘rstatix’, ‘tibble’, ‘magrittr’, ‘knitr’, ‘RColorBrewer’, ‘gtable’, ‘testthat’
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/Deriv_4.1.3.tgz'
+Content type 'application/x-gzip' length 147619 bytes (144 KB)
+==================================================
+downloaded 144 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/modelr_0.1.11.tgz'
+Content type 'application/x-gzip' length 203699 bytes (198 KB)
+==================================================
+downloaded 198 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/microbenchmark_1.5.0.tgz'
+Content type 'application/x-gzip' length 72581 bytes (70 KB)
+==================================================
+downloaded 70 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/numDeriv_2016.8-1.1.tgz'
+Content type 'application/x-gzip' length 114034 bytes (111 KB)
+==================================================
+downloaded 111 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/doBy_4.6.22.tgz'
+Content type 'application/x-gzip' length 4687078 bytes (4.5 MB)
+==================================================
+downloaded 4.5 MB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/SparseM_1.84-2.tgz'
+Content type 'application/x-gzip' length 942603 bytes (920 KB)
+==================================================
+downloaded 920 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/MatrixModels_0.5-3.tgz'
+Content type 'application/x-gzip' length 408171 bytes (398 KB)
+==================================================
+downloaded 398 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/minqa_1.2.8.tgz'
+Content type 'application/x-gzip' length 340282 bytes (332 KB)
+==================================================
+downloaded 332 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/nloptr_2.1.1.tgz'
+Content type 'application/x-gzip' length 538071 bytes (525 KB)
+==================================================
+downloaded 525 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/stringi_1.8.4.tgz'
+Content type 'application/x-gzip' length 14772477 bytes (14.1 MB)
+==================================================
+downloaded 14.1 MB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/utf8_1.2.4.tgz'
+Content type 'application/x-gzip' length 206910 bytes (202 KB)
+==================================================
+downloaded 202 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/colorspace_2.1-1.tgz'
+Content type 'application/x-gzip' length 2665643 bytes (2.5 MB)
+==================================================
+downloaded 2.5 MB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/backports_1.5.0.tgz'
+Content type 'application/x-gzip' length 122017 bytes (119 KB)
+==================================================
+downloaded 119 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/carData_3.0-5.tgz'
+Content type 'application/x-gzip' length 1827706 bytes (1.7 MB)
+==================================================
+downloaded 1.7 MB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/abind_1.4-5.tgz'
+Content type 'application/x-gzip' length 62270 bytes (60 KB)
+==================================================
+downloaded 60 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/pbkrtest_0.5.3.tgz'
+Content type 'application/x-gzip' length 176737 bytes (172 KB)
+==================================================
+downloaded 172 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/quantreg_5.98.tgz'
+Content type 'application/x-gzip' length 1657834 bytes (1.6 MB)
+==================================================
+downloaded 1.6 MB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/lme4_1.1-35.5.tgz'
+Content type 'application/x-gzip' length 7080907 bytes (6.8 MB)
+==================================================
+downloaded 6.8 MB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/fs_1.6.4.tgz'
+Content type 'application/x-gzip' length 625516 bytes (610 KB)
+==================================================
+downloaded 610 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/pkgbuild_1.4.4.tgz'
+Content type 'application/x-gzip' length 202734 bytes (197 KB)
+==================================================
+downloaded 197 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/rprojroot_2.0.4.tgz'
+Content type 'application/x-gzip' length 105855 bytes (103 KB)
+==================================================
+downloaded 103 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/diffobj_0.3.5.tgz'
+Content type 'application/x-gzip' length 1032196 bytes (1008 KB)
+==================================================
+downloaded 1008 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/rematch2_2.1.2.tgz'
+Content type 'application/x-gzip' length 45685 bytes (44 KB)
+==================================================
+downloaded 44 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/isoband_0.2.7.tgz'
+Content type 'application/x-gzip' length 1869352 bytes (1.8 MB)
+==================================================
+downloaded 1.8 MB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/withr_3.0.1.tgz'
+Content type 'application/x-gzip' length 223579 bytes (218 KB)
+==================================================
+downloaded 218 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/Rcpp_1.0.13.tgz'
+Content type 'application/x-gzip' length 3351832 bytes (3.2 MB)
+==================================================
+downloaded 3.2 MB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/stringr_1.5.1.tgz'
+Content type 'application/x-gzip' length 314273 bytes (306 KB)
+==================================================
+downloaded 306 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/tidyselect_1.2.1.tgz'
+Content type 'application/x-gzip' length 224679 bytes (219 KB)
+==================================================
+downloaded 219 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/generics_0.1.3.tgz'
+Content type 'application/x-gzip' length 81908 bytes (79 KB)
+==================================================
+downloaded 79 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/pillar_1.9.0.tgz'
+Content type 'application/x-gzip' length 652058 bytes (636 KB)
+==================================================
+downloaded 636 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/farver_2.1.2.tgz'
+Content type 'application/x-gzip' length 1968704 bytes (1.9 MB)
+==================================================
+downloaded 1.9 MB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/labeling_0.4.3.tgz'
+Content type 'application/x-gzip' length 61494 bytes (60 KB)
+==================================================
+downloaded 60 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/munsell_0.5.1.tgz'
+Content type 'application/x-gzip' length 246540 bytes (240 KB)
+==================================================
+downloaded 240 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/viridisLite_0.4.2.tgz'
+Content type 'application/x-gzip' length 1297629 bytes (1.2 MB)
+==================================================
+downloaded 1.2 MB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/broom_1.0.6.tgz'
+Content type 'application/x-gzip' length 1880126 bytes (1.8 MB)
+==================================================
+downloaded 1.8 MB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/corrplot_0.94.tgz'
+Content type 'application/x-gzip' length 3816048 bytes (3.6 MB)
+==================================================
+downloaded 3.6 MB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/car_3.1-2.tgz'
+Content type 'application/x-gzip' length 1714060 bytes (1.6 MB)
+==================================================
+downloaded 1.6 MB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/fansi_1.0.6.tgz'
+Content type 'application/x-gzip' length 383060 bytes (374 KB)
+==================================================
+downloaded 374 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/evaluate_0.24.0.tgz'
+Content type 'application/x-gzip' length 84888 bytes (82 KB)
+==================================================
+downloaded 82 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/highr_0.11.tgz'
+Content type 'application/x-gzip' length 37545 bytes (36 KB)
+==================================================
+downloaded 36 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/xfun_0.47.tgz'
+Content type 'application/x-gzip' length 538927 bytes (526 KB)
+==================================================
+downloaded 526 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/yaml_2.3.10.tgz'
+Content type 'application/x-gzip' length 217628 bytes (212 KB)
+==================================================
+downloaded 212 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/brio_1.1.5.tgz'
+Content type 'application/x-gzip' length 46684 bytes (45 KB)
+==================================================
+downloaded 45 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/callr_3.7.6.tgz'
+Content type 'application/x-gzip' length 440784 bytes (430 KB)
+==================================================
+downloaded 430 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/desc_1.4.3.tgz'
+Content type 'application/x-gzip' length 335869 bytes (327 KB)
+==================================================
+downloaded 327 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/digest_0.6.37.tgz'
+Content type 'application/x-gzip' length 356053 bytes (347 KB)
+==================================================
+downloaded 347 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/pkgload_1.4.0.tgz'
+Content type 'application/x-gzip' length 218460 bytes (213 KB)
+==================================================
+downloaded 213 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/praise_1.0.0.tgz'
+Content type 'application/x-gzip' length 16684 bytes (16 KB)
+==================================================
+downloaded 16 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/processx_3.8.4.tgz'
+Content type 'application/x-gzip' length 318400 bytes (310 KB)
+==================================================
+downloaded 310 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/ps_1.7.7.tgz'
+Content type 'application/x-gzip' length 317053 bytes (309 KB)
+==================================================
+downloaded 309 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/waldo_0.5.3.tgz'
+Content type 'application/x-gzip' length 104285 bytes (101 KB)
+==================================================
+downloaded 101 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/ggplot2_3.5.1.tgz'
+Content type 'application/x-gzip' length 4974305 bytes (4.7 MB)
+==================================================
+downloaded 4.7 MB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/ggrepel_0.9.6.tgz'
+Content type 'application/x-gzip' length 624147 bytes (609 KB)
+==================================================
+downloaded 609 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/ggsci_3.2.0.tgz'
+Content type 'application/x-gzip' length 2392457 bytes (2.3 MB)
+==================================================
+downloaded 2.3 MB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/tidyr_1.3.1.tgz'
+Content type 'application/x-gzip' length 1324134 bytes (1.3 MB)
+==================================================
+downloaded 1.3 MB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/purrr_1.0.2.tgz'
+Content type 'application/x-gzip' length 524757 bytes (512 KB)
+==================================================
+downloaded 512 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/dplyr_1.1.4.tgz'
+Content type 'application/x-gzip' length 1599250 bytes (1.5 MB)
+==================================================
+downloaded 1.5 MB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/cowplot_1.1.3.tgz'
+Content type 'application/x-gzip' length 1377386 bytes (1.3 MB)
+==================================================
+downloaded 1.3 MB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/ggsignif_0.6.4.tgz'
+Content type 'application/x-gzip' length 603292 bytes (589 KB)
+==================================================
+downloaded 589 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/scales_1.3.0.tgz'
+Content type 'application/x-gzip' length 710409 bytes (693 KB)
+==================================================
+downloaded 693 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/gridExtra_2.3.tgz'
+Content type 'application/x-gzip' length 1105831 bytes (1.1 MB)
+==================================================
+downloaded 1.1 MB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/polynom_1.4-1.tgz'
+Content type 'application/x-gzip' length 402593 bytes (393 KB)
+==================================================
+downloaded 393 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/rstatix_0.7.2.tgz'
+Content type 'application/x-gzip' length 615552 bytes (601 KB)
+==================================================
+downloaded 601 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/tibble_3.2.1.tgz'
+Content type 'application/x-gzip' length 688886 bytes (672 KB)
+==================================================
+downloaded 672 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/magrittr_2.0.3.tgz'
+Content type 'application/x-gzip' length 233519 bytes (228 KB)
+==================================================
+downloaded 228 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/knitr_1.48.tgz'
+Content type 'application/x-gzip' length 1165294 bytes (1.1 MB)
+==================================================
+downloaded 1.1 MB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/RColorBrewer_1.1-3.tgz'
+Content type 'application/x-gzip' length 53324 bytes (52 KB)
+==================================================
+downloaded 52 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/gtable_0.3.5.tgz'
+Content type 'application/x-gzip' length 218293 bytes (213 KB)
+==================================================
+downloaded 213 KB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/testthat_3.2.1.1.tgz'
+Content type 'application/x-gzip' length 3061804 bytes (2.9 MB)
+==================================================
+downloaded 2.9 MB
+
+trying URL 'https://cran.wustl.edu/bin/macosx/big-sur-arm64/contrib/4.4/ggpubr_0.6.0.tgz'
+Content type 'application/x-gzip' length 2100163 bytes (2.0 MB)
+==================================================
+downloaded 2.0 MB
+
+
+The downloaded binary packages are in
+	/var/folders/cy/7rrj6ps55nv9xttj30vmz3300000gn/T//RtmpS0cP9d/downloaded_packages
+> library(ggpubr)
+Loading required package: ggplot2
+> library(ggpubr)
+> my_data <- mtcars
+> head(my_data)
+                   mpg cyl disp  hp drat    wt  qsec vs am gear carb
+Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1
+> data <- ReadAffy()
+> 
+> data_norm <- rma(data)
+Background correcting
+Normalizing
+Calculating Expression
+> 
+> data_norm <- exprs(data_norm)
+> Treatment <- data_norm [1:2]
+> Control <- data_norm[3:4]
+> Average_Treatment <- rowMeans (Treatment)
+Error in rowMeans(Treatment) : 
+  'x' must be an array of at least two dimensions
+> Average_Control <- rowMeans (Control)
+Error in rowMeans(Control) : 
+  'x' must be an array of at least two dimensions
+> 
+> Average_Treatment <- rowMeans(Treatment)
+Error in rowMeans(Treatment) : 
+  'x' must be an array of at least two dimensions
+> Average_Control <- rowMeans(Control)
+Error in rowMeans(Control) : 
+  'x' must be an array of at least two dimensions
+> Fold_change <- Average_Treatment - Average_Control
+Error: object 'Average_Treatment' not found
+> 
+> Treatment <- data_norm [,1:2]
+> Control <- data_norm[,3:4]
+> Average_Treatment <- rowMeans(Treatment)
+> Average_Control <- rowMeans(Control)
+> Fold_change <- Average_Treatment - Average_Control
+> head(Fold_change)
+   100_g_at     1000_at     1001_at   1002_f_at   1003_s_at     1004_at 
+ 0.02004328 -0.37687887  0.31352888  0.23368661  0.07965329  0.08178445 
+> 
